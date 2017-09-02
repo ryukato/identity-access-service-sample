@@ -40,7 +40,7 @@ import java.security.Principal;
  */
 @EntityScan(
 		basePackageClasses = {Jsr310JpaConverters.class},
-		basePackages = {"com.eoe.domain"}
+		basePackages = {"app.domain"}
 )
 @SpringBootApplication
 public class IdentityAccessServiceApplication {
