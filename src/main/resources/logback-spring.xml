@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true" scanPeriod="5 seconds">
+
+    <springProfile name="default">
+        <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+        <!-- CONSOLE LOG PATTERN -->
+        <property name="CONSOLE_LOG_PATTERN" value="[${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}] %d{[yyyy.MM.dd HH:mm:ss]} [%-35.35c{1}] %-5p %m%n" />
+
+        <!-- LOGSTASH LOG PATTERN -->
+        <property name="LOGSTASH_LOG_PATTERN" value="log.monitor:: %d{[yyyy.MM.dd HH:mm:ss]} %-5p %m%n" />
+
+        <!-- Console Appender -->
+        <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="logstash_fwk" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${LOGSTASH_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <!-- Spring -->
+        <logger name="org.springframework"  level="WARN"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.core" level="INFO" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.beans" level="INFO"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.context" level="INFO" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.http" level="DEBUG" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.web" level="INFO"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.security" level="INFO" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource" level="DEBUG" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager" level="DEBUG"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.test.web.servlet" additivity="false"  level="DEBUG" >
+            <appender-ref ref="console" />
+        </logger>
+        <!-- [End] Spring log -->
+
+        <!-- SQL log -->
+        <logger name="org.springframework.jdbc" level="DEBUG" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="jdbc" level="ERROR" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="jdbc.sqlonly" level="TRACE"  additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="jdbc.resultsettable" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="access" level="TRACE" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="logstash.log" level="TRACE" additivity="false">
+            <appender-ref ref="logstash_fwk" />
+        </logger>
+
+        <logger name="error" level="DEBUG" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="org.hibernate.validator" level="DEBUG">
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.hibernate" level="DEBUG">
+            <appender-ref ref="console" />
+        </logger>
+        <!-- Root INFO declaration -->
+        <root level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+
+    <springProfile name="dev">
+        <!-- CONSOLE LOG PATTERN -->
+        <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+        <!-- CONSOLE LOG PATTERN -->
+        <property name="CONSOLE_LOG_PATTERN" value="[${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}] %d{[yyyy.MM.dd HH:mm:ss]} [%-35.35c{1}] %-5p %m%n" />
+
+        <!-- LOGSTASH LOG PATTERN -->
+        <!--<property name="LOGSTASH_LOG_PATTERN" value="log.monitor:: %d{[yyyy.MM.dd HH:mm:ss]} %-5p %m%n" />-->
+
+        <!-- Console Appender -->
+        <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <!--<appender name="logstash_fwk" class="ch.qos.logback.core.ConsoleAppender">-->
+            <!--<encoder>-->
+                <!--<pattern>${LOGSTASH_LOG_PATTERN}</pattern>-->
+            <!--</encoder>-->
+        <!--</appender>-->
+
+        <!-- Spring -->
+        <logger name="org.springframework"  level="WARN"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.core" level="INFO" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.beans" level="INFO"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.context" level="INFO" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.http" level="DEBUG" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.web" level="DEBUG"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.security" level="INFO" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource" level="DEBUG" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager" level="DEBUG"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.test.web.servlet" additivity="false"  level="DEBUG" >
+            <appender-ref ref="console" />
+        </logger>
+        <!-- [End] Spring log -->
+
+        <!-- SQL log -->
+        <logger name="org.springframework.jdbc" level="DEBUG" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="jdbc" level="ERROR" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="jdbc.sqlonly" level="TRACE"  additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="jdbc.resultsettable" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="access" level="TRACE" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <!--<logger name="logstash.log" level="TRACE" additivity="false">-->
+            <!--<appender-ref ref="logstash_fwk" />-->
+        <!--</logger>-->
+
+        <logger name="com.eoe" level="DEBUG" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        <!-- 오류 -->
+        <logger name="error" level="DEBUG" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <!-- Root INFO declaration -->
+        <root level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+
+    <springProfile name="stg"></springProfile>
+
+    <springProfile name="prod">
+        <!-- CONSOLE LOG PATTERN -->
+        <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+        <!-- CONSOLE LOG PATTERN -->
+        <property name="CONSOLE_LOG_PATTERN" value="[${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}] %d{[yyyy.MM.dd HH:mm:ss]} [%-35.35c{1}] %-5p %m%n" />
+
+        <!-- LOGSTASH LOG PATTERN -->
+        <!--<property name="LOGSTASH_LOG_PATTERN" value="log.monitor:: %d{[yyyy.MM.dd HH:mm:ss]} %-5p %m%n" />-->
+
+        <!-- Console Appender -->
+        <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <!--<appender name="logstash_fwk" class="ch.qos.logback.core.ConsoleAppender">-->
+        <!--<encoder>-->
+        <!--<pattern>${LOGSTASH_LOG_PATTERN}</pattern>-->
+        <!--</encoder>-->
+        <!--</appender>-->
+
+        <!-- Spring -->
+        <logger name="org.springframework"  level="WARN"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.core" level="INFO" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.beans" level="INFO"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.context" level="INFO" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.http" level="DEBUG" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.web" level="DEBUG"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.security" level="INFO" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource" level="DEBUG" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager" level="DEBUG"  additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="org.springframework.test.web.servlet" additivity="false"  level="DEBUG" >
+            <appender-ref ref="console" />
+        </logger>
+        <!-- [End] Spring log -->
+
+        <!-- SQL log -->
+        <logger name="org.springframework.jdbc" level="DEBUG" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="jdbc" level="ERROR" additivity="false" >
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="jdbc.sqlonly" level="TRACE"  additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        <logger name="jdbc.resultsettable" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <logger name="access" level="TRACE" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <!--<logger name="logstash.log" level="TRACE" additivity="false">-->
+        <!--<appender-ref ref="logstash_fwk" />-->
+        <!--</logger>-->
+
+        <logger name="com.eoe" level="DEBUG" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+        <!-- 오류 -->
+        <logger name="error" level="DEBUG" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
+
+        <!-- Root INFO declaration -->
+        <root level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+</configuration>

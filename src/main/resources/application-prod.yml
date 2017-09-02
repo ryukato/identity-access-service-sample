@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: prod
+  datasource:
+    url: jdbc:${DATABASE_URL}
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: prod
+    dbcp2:
+      max-total: 3
+      max-idle: 3
+    tomcat:
+      max-active: 3
+      max-idle: 3
+      min-idle: 1
+
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database: mysql
+    open-in-view: false
+    generate-ddl: true
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false

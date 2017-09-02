@@ -1,0 +1,1 @@
+web: java -Xmx384m -Xss512k -XX:+UseCompressedOops -jar target/identity-access-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=$PROFILE --server.port=$PORT
