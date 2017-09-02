@@ -76,7 +76,7 @@ public class TenantServiceTest {
 
         tenant = tenantService.createTenant(tenant);
         assertEquals(tenant.getStatus(), Tenant.Status.CREATED);
-        verify(tenantRepository, times(1)).save(tenant);
+        verify(tenantRepository, times(2)).save(tenant);
         assertNotNull(tenant.getApiKeyInformation());
         assertNotNull(tenant.getApiKeyInformation().getApiKey());
     }
