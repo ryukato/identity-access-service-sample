@@ -5,6 +5,16 @@ Multi tenant를 기반으로 하고 있지만, 아주 초보적인 model이기�
 
 단, OAuth2 기반의 IAM 서비스를 구현하기 위한 참고용 프로젝트로는 활용 가능하다.
 
+
+## Run
+
+### From Terminal
+* 아래의 명령어를 실행하기 전에 해당 프로젝트의 경로로 이동한다.
+
+```
+mvn clean spring-boot:run
+```
+
 ## Test
 ### Using Curl
 #### Get AccessToken from Auth-Service
@@ -52,18 +62,4 @@ http -f POST https://identity-access-management.herokuapp.com/oauth/token grant_
 ```
 http :8081/test "Authorization: Bearer c89c154f-58f1-486d-8a6c-e3d11c283c22"
 ```
-
-### Run
-
-#### From Terminal
-* 아래의 명령어를 실행하기 전에 해당 프로젝트의 경로로 이동한다. 
-
-```
-mvn clean spring-boot:run
-```
-
-### ETC
-
-#### console log
-* Auth-Service 실행 중, **Failed to find access token for token** 메세지는 새로운 accessToken 발행 시, 이미 발행된 accessToken이 없음을 나타내는 메세지이다. 무시해도 상관없다. 
 
